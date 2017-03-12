@@ -1,10 +1,12 @@
 package com.example.controller;
 
+import com.example.dto.CurrencyDTO;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.math.BigDecimal;
 import java.util.Currency;
 
 /**
@@ -39,6 +41,17 @@ public class CurrencyExchangeController {
             Currency currencyFrom = Currency.getInstance(from);
             Currency currencyTo = Currency.getInstance(to);
             return value + " " + from + " = " + value * multiplier + " " + to;
+        } catch (IllegalArgumentException e){
+            throw new RuntimeException("Something went wrong.");
+        }
+    }
+
+    @RequestMapping("/currencyDTO/{value:.+}")
+    public CurrencyDTO currencyDTO(@PathVariable BigDecimal value,
+                                   @RequestParam("currency") String currency){
+        try{
+            Currency currencyObject = Currency.getInstance(currency);
+            return new CurrencyDTO(value, currencyObject);
         } catch (IllegalArgumentException e){
             throw new RuntimeException("Something went wrong.");
         }

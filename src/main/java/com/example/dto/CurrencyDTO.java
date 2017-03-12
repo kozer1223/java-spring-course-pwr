@@ -1,9 +1,6 @@
 package com.example.dto;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.util.Currency;
@@ -15,6 +12,7 @@ import java.util.Currency;
 @Setter
 @EqualsAndHashCode
 @ToString
+@AllArgsConstructor
 public class CurrencyDTO {
 
     private BigDecimal value;
