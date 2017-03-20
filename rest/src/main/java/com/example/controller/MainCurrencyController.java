@@ -9,13 +9,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Currency;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Kacper on 2017-03-20.
@@ -55,6 +53,32 @@ public class MainCurrencyController {
     @RequestMapping(value = "/currency", method = RequestMethod.POST)
     ResponseEntity<ExchangeModel> getExchange(@RequestBody CurrencyParams params){
         return getExchange(params.getFrom(), params.getTo(), params.getDate());
+    }
+
+    @RequestMapping("/exchange")
+    ResponseEntity<BigDecimal> getExchangeValue(@RequestParam("value") BigDecimal value,
+                                                @RequestParam("from") String from,
+                                                @RequestParam(value = "to", required = false) String to,
+                                                @RequestParam(value = "date", required = false) String date){
+        try{
+            Currency sourceCurrency = Currency.getInstance(from);
+            Currency targetCurrency = Currency.getInstance(to);
+            Date dateDto = null;
+            if (date != null){
+                dateDto = dateFormat.parse(date);
+            }
+            ExchangeModel model = currencyService.getExchangeRates(sourceCurrency, targetCurrency, dateDto);
+            Map<String, BigDecimal> rates = model.getRates().getCurrencyRates();
+            if (!rates.keySet().isEmpty()){
+                BigDecimal exchangedValue = value.multiply(rates.get(targetCurrency.getCurrencyCode()));
+                System.out.println(exchangedValue);
+                return new ResponseEntity<BigDecimal>(exchangedValue, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<BigDecimal>(HttpStatus.BAD_REQUEST);
+            }
+        } catch (IllegalArgumentException | ParseException e){
+            return new ResponseEntity<BigDecimal>(HttpStatus.BAD_REQUEST);
+        }
     }
 
 }
