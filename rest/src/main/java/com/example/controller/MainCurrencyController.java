@@ -71,7 +71,6 @@ public class MainCurrencyController {
             Map<String, BigDecimal> rates = model.getRates().getCurrencyRates();
             if (!rates.keySet().isEmpty()){
                 BigDecimal exchangedValue = value.multiply(rates.get(targetCurrency.getCurrencyCode()));
-                System.out.println(exchangedValue);
                 return new ResponseEntity<BigDecimal>(exchangedValue, HttpStatus.OK);
             } else {
                 return new ResponseEntity<BigDecimal>(HttpStatus.BAD_REQUEST);
