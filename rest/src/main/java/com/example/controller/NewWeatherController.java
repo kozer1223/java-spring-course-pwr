@@ -1,8 +1,8 @@
 package com.example.controller;
 
 import com.example.model.WeatherParams;
-import com.example.service.OpenWeatherClient;
-import com.example.util.ExchangeModel;
+import com.example.impl.OpenWeatherClient;
+import com.example.model.ExchangeModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

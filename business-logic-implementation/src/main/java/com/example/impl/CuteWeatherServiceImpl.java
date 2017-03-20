@@ -1,7 +1,6 @@
-package com.example.service.impl;
+package com.example.impl;
 
 import com.example.service.WeatherService;
-import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 /**
