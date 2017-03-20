@@ -1,4 +1,3 @@
-
 package com.example.model;
 
 import java.util.HashMap;
@@ -12,9 +11,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "base",
-    "date",
-    "rates"
+        "base",
+        "date",
+        "rates"
 })
 public class ExchangeModel {
 
@@ -27,6 +26,26 @@ public class ExchangeModel {
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
+    /**
+     * No args constructor for use in serialization
+     *
+     */
+    public ExchangeModel() {
+    }
+
+    /**
+     *
+     * @param base
+     * @param rates
+     * @param date
+     */
+    public ExchangeModel(String base, String date, Rates rates) {
+        super();
+        this.base = base;
+        this.date = date;
+        this.rates = rates;
+    }
+
     @JsonProperty("base")
     public String getBase() {
         return base;
@@ -35,11 +54,6 @@ public class ExchangeModel {
     @JsonProperty("base")
     public void setBase(String base) {
         this.base = base;
-    }
-
-    public ExchangeModel withBase(String base) {
-        this.base = base;
-        return this;
     }
 
     @JsonProperty("date")
@@ -52,11 +66,6 @@ public class ExchangeModel {
         this.date = date;
     }
 
-    public ExchangeModel withDate(String date) {
-        this.date = date;
-        return this;
-    }
-
     @JsonProperty("rates")
     public Rates getRates() {
         return rates;
@@ -67,11 +76,6 @@ public class ExchangeModel {
         this.rates = rates;
     }
 
-    public ExchangeModel withRates(Rates rates) {
-        this.rates = rates;
-        return this;
-    }
-
     @JsonAnyGetter
     public Map<String, Object> getAdditionalProperties() {
         return this.additionalProperties;
@@ -80,11 +84,6 @@ public class ExchangeModel {
     @JsonAnySetter
     public void setAdditionalProperty(String name, Object value) {
         this.additionalProperties.put(name, value);
-    }
-
-    public ExchangeModel withAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
-        return this;
     }
 
 }

@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import com.example.model.Rates;
 import com.example.model.WeatherParams;
 import com.example.impl.OpenWeatherClient;
 import com.example.model.ExchangeModel;
@@ -46,6 +47,11 @@ public class NewWeatherController {
     @RequestMapping("/currency")
     ExchangeModel getExchange(){
         return client.getExchange();
+    }
+
+    @RequestMapping("/currency/rates")
+    Rates getExchangeRates(){
+        return client.getExchange().getRates();
     }
 
 }
