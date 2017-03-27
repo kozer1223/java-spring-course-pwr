@@ -10,7 +10,8 @@
 		<module>business-logic-implementation</module>
 		<module>rest</module>
 		<module>rest-client</module>
-	</modules>
+        <module>database</module>
+    </modules>
     <packaging>pom</packaging>
 
 	<name>demo</name>

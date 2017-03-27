@@ -21,6 +21,16 @@
             <artifactId>business-logic-interface</artifactId>
             <version>2.4-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>com.example</groupId>
+            <artifactId>database</artifactId>
+            <version>2.4-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.example</groupId>
+            <artifactId>rest-client</artifactId>
+            <version>2.4-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
 

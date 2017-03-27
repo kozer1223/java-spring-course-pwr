@@ -17,17 +17,17 @@ import java.util.Currency;
 public class CurrencyExchangeController {
 
     @RequestMapping("/multiply/{number}")
-    public Long multiplyByTwo(@PathVariable Long number){
+    public Long multiplyByTwo(@PathVariable Long number) {
         return number * 2;
     }
 
     @RequestMapping("/currency/{value}")
     public String addCurrencySignature(@PathVariable Long value,
-                                       @RequestParam("currency") String currency){
-        try{
+                                       @RequestParam("currency") String currency) {
+        try {
             Currency currencyObject = Currency.getInstance(currency); // bad variable name???
             return value + " " + currency;
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             throw new RuntimeException("Something went wrong.");
         }
     }
@@ -36,23 +36,23 @@ public class CurrencyExchangeController {
     public String calculateCurrency(@PathVariable Long value,
                                     @PathVariable Long multiplier,
                                     @RequestParam("from") String from,
-                                    @RequestParam("to") String to){
-        try{
+                                    @RequestParam("to") String to) {
+        try {
             Currency currencyFrom = Currency.getInstance(from);
             Currency currencyTo = Currency.getInstance(to);
             return value + " " + from + " = " + value * multiplier + " " + to;
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             throw new RuntimeException("Something went wrong.");
         }
     }
 
     @RequestMapping("/currencyDTO/{value:.+}")
     public CurrencyDTO currencyDTO(@PathVariable BigDecimal value,
-                                   @RequestParam("currency") String currency){
-        try{
+                                   @RequestParam("currency") String currency) {
+        try {
             Currency currencyObject = Currency.getInstance(currency);
             return new CurrencyDTO(value, currencyObject);
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             throw new RuntimeException("Something went wrong.");
         }
     }
