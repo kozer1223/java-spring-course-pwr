@@ -11,15 +11,15 @@ import java.math.BigDecimal;
 @Data
 @Entity
 @Table(name="currency")
-public class Currency {
+public class CurrencyData {
 
     @Id
     @GeneratedValue
     private Long id;
 
     @Column
-    String currencyName;
+    String currencyCode;
 
     @Column
-    BigDecimal value;
+    String name;
 }

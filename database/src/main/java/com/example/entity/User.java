@@ -23,6 +23,6 @@ public class User {
 
     @Column
     @OneToMany
-    private List<Currency> currencies;
+    private List<CurrencyData> currencies;
 
 }
