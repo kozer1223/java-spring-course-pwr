@@ -125,4 +125,8 @@ public class FixerCurrencyServiceImpl implements CurrencyService {
     public ExchangeModel getExchangeRates(Currency source, Collection<Currency> targets, Date date) {
         return fullExchangeRates(source, targets, date);
     }
+
+    public Collection<CurrencyValue> getAllExchangePairs(){
+        return currencyValueRepository.findAll();
+    }
 }
