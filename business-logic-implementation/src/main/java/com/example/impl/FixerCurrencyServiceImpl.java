@@ -95,7 +95,7 @@ public class FixerCurrencyServiceImpl implements CurrencyService {
                 currencyValueRepository.save(value);
             }
         } catch (ParseException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Parse error");
         }
 
         return response;

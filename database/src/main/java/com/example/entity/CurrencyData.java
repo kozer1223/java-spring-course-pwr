@@ -17,7 +17,7 @@ public class CurrencyData {
     @GeneratedValue
     private Long id;
 
-    @Column
+    @Column(unique = true)
     String currencyCode;
 
     @Column

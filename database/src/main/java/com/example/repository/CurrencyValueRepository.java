@@ -16,4 +16,6 @@ public interface CurrencyValueRepository extends JpaRepository<CurrencyValue, Lo
 
     @Query("SELECT cv FROM #{#entityName} cv INNER JOIN cv.baseCurrency b INNER JOIN cv.exchangeCurrency e WHERE b.currencyCode = ?1 AND e.currencyCode = 'EUR' AND cv.date BETWEEN ?2 AND ?3")
     List<CurrencyValue> findByCurrencyCodeAndDateBetween(String currencyCode, Date startDate, Date endDate);
+
+    List<CurrencyValue> findByBaseCurrencyCurrencyCodeAndDateBetween(String currencyCode, Date startDate, Date endDate);
 }

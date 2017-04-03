@@ -139,7 +139,7 @@ public class MainCurrencyController {
 
     @RequestMapping(value="/getCurrencyStats", method = RequestMethod.POST)
     String getCurrencyStatistics(@RequestBody CurrencyStatParams currencyStatParams){
-        List<CurrencyValue> currencyValues = currencyValueRepository.findByCurrencyCodeAndDateBetween(
+        List<CurrencyValue> currencyValues = currencyValueRepository.findByBaseCurrencyCurrencyCodeAndDateBetween(
                 currencyStatParams.getCurrency(),currencyStatParams.getStartDate(), currencyStatParams.getEndDate());
         List<BigDecimal> values = new ArrayList<>();
         for (CurrencyValue currencyValue : currencyValues){
@@ -151,8 +151,9 @@ public class MainCurrencyController {
         for (BigDecimal value : values){
             avg = avg.add(value);
         }
-        avg = avg.divide(BigDecimal.valueOf(values.size()));
-        return "MIN: " + min.toString() + " MAX: " + max.toString() + " AVG: " + avg.toString();
+        return currencyValues.toString();
+        //avg = avg.divide(BigDecimal.valueOf(values.size()));
+        //return "MIN: " + min.toString() + " MAX: " + max.toString() + " AVG: " + avg.toString();
     }
 
 }
